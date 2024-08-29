@@ -8,10 +8,16 @@ the first thing is to clone the github repository:
 `git clone https://github.com/triggerAustin/study-mate.git`
 
 then:
+
 `cd study-mate`
+
 then you start a virtual env.
-download it using `python -m venv venv`
-activate it using `source venv/bin/activate`
+download it using:
+
+`python -m venv venv`
+activate it using:
+
+`source venv/bin/activate`
 once you have activated it, your bash prompt should have a preceeding (venv) at the beginning
 now it is time to install the requirements for this project
 
