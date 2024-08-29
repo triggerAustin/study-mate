@@ -11,16 +11,16 @@ then:
 
 `cd study-mate`
 
-then you start a virtual env.
-download it using:
+then you start a virtual env. Download it using:
 
 `python -m venv venv`
+
 activate it using:
 
 `source venv/bin/activate`
-once you have activated it, your bash prompt should have a preceeding (venv) at the beginning
-now it is time to install the requirements for this project
+
+Once you have activated it, your bash prompt should have a preceeding (venv) at the beginning. Now it is time to install the requirements for this project. Use:
 
 `pip install -r requirements.txt`
 
-after the installation is successful, run `cd api/v1/` and then run `flask run` to start the application
+after the installation is successful, run `cd api/v1/` and then run `flask run` to start the application.
