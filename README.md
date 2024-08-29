@@ -8,9 +8,7 @@ the first thing is to clone the github repository:
 `git clone https://github.com/triggerAustin/study-mate.git`
 
 then:
-
 `cd study-mate`
-
 then you start a virtual env.
 download it using `python -m venv venv`
 activate it using `source venv/bin/activate`
