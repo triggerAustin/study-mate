@@ -12,8 +12,10 @@ then:
 `cd study-mate`
 
 since the project requires a databse you will first run:
-if you don't have mysql installed, [follow this installation guide](https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/)
-`setup_mysql_server.sql` this command sets up mysql server for the project.
+if you don't have mysql installed, [follow this installation guide](https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/). You can skip this step if you have mysql installed already.
+After installation run this command to set up the mysql server
+
+`cat setup_mysql_dev.sql | mysql -hlocalhost -uroot -p` put your mysql password at the prompt.
 
 then you start a virtual env. Download it using:
 
