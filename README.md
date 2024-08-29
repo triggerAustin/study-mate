@@ -4,7 +4,11 @@ for the portfolio project for alx foundations
 ## installation
 this setup procedure is gor a linux machine primarily
 the first thing is to clone the github repository:
+
+
 `git clone https://github.com/triggerAustin/study-mate.git`
+
+
 then:
 `cd study-mate`
 then you start a virtual env.
