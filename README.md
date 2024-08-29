@@ -12,7 +12,7 @@ then:
 `cd study-mate`
 
 since the project requires a databse you will first run:
-to install mysql run [hi](https://github.com/triggerAustin/study-mate/edit/master/README.md)
+if you don't have mysql installed, [follow this installation guide](https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/)
 `setup_mysql_server.sql` this command sets up mysql server for the project.
 
 then you start a virtual env. Download it using:
