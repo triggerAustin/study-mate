@@ -1,0 +1,148 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0d0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #dcdcb2;
+    padding: 20px;
+    border-radius: 15px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-family: 'Comic Sans MS', cursive;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input, select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 14px;
+}
+
+input:focus, select:focus {
+    border-color: #8b8b42;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+}
+
+#registerButton {
+    background-color: #a3ea73;
+    color: #000;
+}
+
+#cancelButton {
+    background-color: #f05050;
+    color: #fff;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0d0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #dcdcb2;
+    padding: 20px;
+    border-radius: 15px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-family: 'Comic Sans MS', cursive;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input, select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 14px;
+}
+
+input:focus, select:focus {
+    border-color: #8b8b42;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+button:last-child {
+    margin-bottom: 0;
+}
+
+#loginButton, #registerButton, #submitQuiz {
+    background-color: #a3ea73;
+    color: #000;
+}
+
+#cancelButton, #viewResults, #viewSubmissions {
+    background-color: #f05050;
+    color: #fff;
+}
+
+#uploadMaterials, #createQuiz, #takeQuiz, #viewMaterials {
+    background-color: #8ecae6;
+    color: #000;
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.quiz-question {
+    margin-bottom: 15px;
+    text-align: left;
+}

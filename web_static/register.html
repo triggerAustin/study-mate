@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>StudyMate Registration</title>
+</head>
+<body>
+<div class="container">
+    <h1>Welcome to StudyMate</h1>
+    <form id="registrationForm">
+        <input type="text" id="fullName" placeholder="Full name" required>
+        <select id="role" required>
+            <option value="" disabled selected>Are you a teacher or a student?</option>
+            <option value="teacher">Teacher</option>
+            <option value="student">Student</option>
+        </select>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Create password" required>
+        <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+        <div class="button-group">
+            <button type="submit" id="registerButton">Register</button>
+            <button type="button" id="cancelButton">Cancel</button>
+        </div>
+    </form>
+</div>
+<script src="/scripts/register.js"></script>
+</body>
+</html>
