@@ -28,7 +28,7 @@ class BaseModel:
     class definition of basemodel data model
     """
     if models.storage_t == "db":
-        id = Column(String(60), primary_key=True)
+        id = Column(String(60), primary_key=True, default=lambda: str(uuid.uuid4()))
         created_at = Column(DateTime, default=datetime.utcnow)
         updated_at = Column(DateTime, default=datetime.utcnow)
 
@@ -74,6 +74,7 @@ class BaseModel:
         """print string representation """
         return "[{:s}] ({:s}) {}".format(self.__class__.__name__, self.id,
                          self.__dict__)
+
     def to_dict(self):
         """return dict representation of object"""
         new_dict = self.__dict__.copy()
@@ -82,8 +83,11 @@ class BaseModel:
         if "updated_at" in new_dict:
             new_dict["updated_at"] = new_dict["updated_at"].strftime(time)
         new_dict["__class__"] = self.__class__.__name__
+        if "_sa_instance_state" in new_dict:
+            del new_dict["_sa_instance_state"]
 
         return (new_dict)
+
     def delete(self):
         """delete the class instance"""
         app.models.storage.delete(self)

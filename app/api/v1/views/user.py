@@ -18,7 +18,7 @@ def get_users():
         list_users.append(user.to_dict())
     return jsonify(list_users)
 
-@app_views.route('/users/int:<user_id>', methods=['GET'], strict_slashes=False)
+@app_views.route('/user/<int:user_id>', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/user/get_users.yml', methods=['GET'])
 def get_user(user_id):
     """method to get user based off of id"""
@@ -28,29 +28,28 @@ def get_user(user_id):
 
     return jsonify(user.to_dict())
 
-@app_views.route('/users/str:<user_email>', methods=['GET'], strict_slashes=False)
+@app_views.route('/users/get_user_by_email/<string:user_email>', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/user/get_users_by_email.yml', methods=['GET'])
 def get_user_by_email(user_email):
     """get user by email"""
-    email = request.args.get('email')
-    if email:
-         user = storage.get_user_by_email(email)
-         if user:
-            return jsonify({
-                'id': user.id,
-                'email': user.email,
-                'role': user.role
-            })
-         return jsonify({'error': 'User not found'}), 404
-    return jsonify({'error': 'Email parameter is missing'}), 400
+    user = storage.get_user_by_email(user_email)
+    if user:
+        return jsonify({
+            'id': user.id,
+            'email': user.email,
+            'role': user.role,
+            'pCode': user.password
+        })
+    else:
+        return jsonify({ 'email': email}), 404
 
 
-@app_views.route('', methods=['DELETE'], strict_slashes=False)
+@app_views.route('/user/del/user_id', methods=['DELETE'], strict_slashes=False)
 @swag_from('documentation/user/del_user.yml', methods=['DELETE'])
 def del_user(user_id):
     """delete individual user based of off id"""
     user = storage.get(User, user_id)
-
+    print("getting")
     if not user:
         abort(404)
 
@@ -59,7 +58,7 @@ def del_user(user_id):
 
     return make_response(jsonify({}), 200)
 
-@app_views.route('/users/', methods=['POST'], strict_slashes=False)
+@app_views.route('/users/post_user', methods=['POST'], strict_slashes=False)
 @swag_from('documentation/user/post_user.yml', methods=['POST'])
 def post_user():
     """method to create user to db"""
@@ -76,7 +75,7 @@ def post_user():
     instance.save()
     return make_response(jsonify(instance.to_dict()), 201)
 
-@app_views.route('/users/int:<user_id>', methods=['PUT'], strict_slashes=False)
+@app_views.route('/users/<int:user_id>', methods=['PUT'], strict_slashes=False)
 @swag_from('documentation/user/put_user.yml', methods=['PUT'])
 def put_user(user_id):
     """update user"""

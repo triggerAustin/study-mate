@@ -22,19 +22,22 @@ class User(BaseModel, Base):
         password = Column(String(128), nullable=False)
         first_name = Column(String(128), nullable=True)
         last_name = Column(String(128), nullable=True)
+        role = Column(String(128), nullable=False)
     else:
         email = ""
         password = ""
         first_name = ""
         last_name = ""
+        role = ""
 
-    def __init__(self, email, password, first_name=None, last_name=None):
+    def __init__(self, email, password, role, first_name=None, last_name=None):
         """constructor"""
         self.id = str(uuid.uuid4())
         self.email = email
         self.password = password
         self.first_name = first_name
         self.last_name = last_name
+        self.role = role
 
     def __setattr__(self, name, value):
         """sets a password with md5 encryption"""
