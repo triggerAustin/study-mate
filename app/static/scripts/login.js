@@ -7,14 +7,14 @@ document.getElementById("login").addEventListener("submit", function(event){
 
     /* collect the user data and send it to the server to validate the login */
     /*austin please change the login to the proper endpoint */
-    let user = new FormData(document.getElementById("loginForm"));
+    let user_data = new FormData(document.getElementById("loginForm"));
 
     fetch("/studyMate/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(formObject)
+        body: user_data
     })
         .then(response => response.json())
         .then(data => {

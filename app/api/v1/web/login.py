@@ -3,7 +3,8 @@
 from app.models import storage, user
 from app.api.v1.web import web
 from os import environ
-from flask import Flask, render_template, request, redirect, session, url_for, flash
+from flask import Flask, render_template, request, redirect, session, url_for, flash, jsonify
+from hashlib import md5
 import requests
 import uuid
 from werkzeug.security import check_password_hash
@@ -27,26 +28,30 @@ def login():
 
     # user login data validation
     if request.method == 'POST':
-        print("post")
         email = request.form.get('email')
-        print(email)
         password = request.form.get('password')
 
         # query from db the specific user based on email
-        response = requests.get(f'http://localhost:5000/api/v1/user/get_user_by_email', params={'email': email})
+        response = requests.get(f'http://localhost:5000/api/v1/users/get_user_by_email/{email}')
         user_data = response.json()
         if response.status_code == 200:
             user = user_data
-            if user and check_password_hash(user.password, password):
-                if user.role == 'student':
-                    return redirect(url_for('student_dashboard'))
-                elif user.role == 'teacher':
-                    return redirect(url_for('teacher_dashboard'))
+            pwd = md5(password.encode()).hexdigest()
+            userPC = user.get('pCode')
+            userRole = user.get('role')
+            if user and (userPC == pwd):
+                print("checks")
+                if userRole == 'student':
+                    print("std")
+                    return render_template('student-dashboard.html')
+                elif userRole == 'teacher':
+                    print("tr")
+                    return render_template('teacher-dashboard.html')
             else:
-                print("get")
                 flash("invalid Password")
         else:
             flash(user_data.get('error', 'Unknown error'))
+    print(":dsf")
     return render_template('login.html')
 
 

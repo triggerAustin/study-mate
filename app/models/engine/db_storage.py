@@ -3,7 +3,7 @@
 Contains the class DBStorage
 """
 
-import app.models
+from app import models
 from app.models.user import User
 from app.models.base_model import Base
 from os import getenv
@@ -56,6 +56,14 @@ class DBStorage:
     def save(self):
         """commit all changes of the current database session"""
         self.__session.commit()
+
+    def get_user_by_email(self, email):
+        """ Retrieve a user by their email """
+        try:
+            return self.__session.query(User).filter_by(email=email).first()
+        except Exception as e:
+            print(f"Error retrieving user by email: {e}")
+        return None
 
     def delete(self, obj=None):
         """delete from the current database session obj if not None"""
