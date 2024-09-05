@@ -1,5 +1,5 @@
 #ignore the progress file
-.progress_log
+.progress.txt
 # ignore the postmoterm file
 postmoterm.txt
 # ignore the venv directory
