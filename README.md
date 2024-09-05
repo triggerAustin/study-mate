@@ -29,4 +29,4 @@ Once you have activated it, your bash prompt should have a preceeding (venv) at 
 
 `pip install -r requirements.txt`
 
-after the installation is successful, run `cd api/v1/` and then run `flask run` to start the application.
+after the installation is successful, run `cd app` and then run `flask run` to start the application.
