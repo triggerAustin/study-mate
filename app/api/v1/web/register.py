@@ -29,16 +29,15 @@ def register():
     if request.method == 'POST':
         # call api to save to db
         user_exists = requests.get(f'http://localhost:5000/api/v1/users/get_user_by_email/{email}')
-        print(user_exists.status_code)
         if user_exists:
-            abort(409, description='user Exists')
-            return make_response(jsonify({"Error": "user exists"}), 409)
+            return render_template('register.html', err="user exists with that email")
 
         response = requests.post(f'http://localhost:5000/api/v1/users/post_user/', json=formData)
         if response.status_code == '201':
-            print("User created:", response.json())
+            return render_template('login.html')
         else:
             print(f"Error {response.status_code}: {response.text}")
+
     return render_template('register.html')
 
 

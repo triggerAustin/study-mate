@@ -27,12 +27,17 @@ def login():
     formData = request.form.to_dict()
 
     # user login data validation
+    if request.method == 'GET':
+        return render_template('login.html')
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
 
         # query from db the specific user based on email
-        response = requests.get(f'http://localhost:5000/api/v1/users/get_user_by_email/{email}')
+        try:
+            response = requests.get(f'http://localhost:5000/api/v1/users/get_user_by_email/{email}')
+        except Exception as e:
+            return render_template('login', err="User doesn't exist")
         user_data = response.json()
         if response.status_code == 200:
             user = user_data
@@ -40,19 +45,19 @@ def login():
             userPC = user.get('pCode')
             userRole = user.get('role')
             if user and (userPC == pwd):
-                print("checks")
+                session['email'] = email
+                if session['email']:
+                    print("session stored")
                 if userRole == 'student':
-                    print("std")
-                    return render_template('student-dashboard.html')
+                    return redirect(url_for('web.studentD'))
                 elif userRole == 'teacher':
-                    print("tr")
-                    return render_template('teacher-dashboard.html')
+                    return redirect(url_for('web.teacherD'))
             else:
-                flash("invalid Password")
-        else:
-            flash(user_data.get('error', 'Unknown error'))
-    print(":dsf")
-    return render_template('login.html')
+                error = "Invalid password"
+                return render_template('login.html', err=error)
+
+        return render_template('login.html', err="user with that email doesn't exists")
+
 
 
 if __name__ == "__main__":
