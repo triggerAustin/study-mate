@@ -9,4 +9,4 @@ api/v1/venv
 # Ignore Python cache files
 __pycache__/
 *.pyc
-
+.progress_log

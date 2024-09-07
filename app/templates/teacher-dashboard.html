@@ -9,11 +9,15 @@
 </head>
 <body>
 <div class="container">
+    {% if session.get('email') %}
+    <p>welcome</p>
+    {% endif %}
     <h1>Teacher Dashboard</h1>
     <div class="dashboard">
         <button id="uploadMaterials">Upload Study Materials</button>
         <button id="createQuiz">Create Quiz</button>
         <button id="viewSubmissions">View Submissions</button>
+	<a href="{{ url_for('web.logout') }}">logout</a>
     </div>
 </div>
 <script src="../static/scripts/teacher-dashboard.js"></script>

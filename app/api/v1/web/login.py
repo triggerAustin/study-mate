@@ -28,7 +28,17 @@ def login():
 
     # user login data validation
     if request.method == 'GET':
+        # redirect if session exists
+        if session:
+            if session.get('role') == 'student':
+                return redirect(url_for('web.studentD'))
+            elif session.get('role') == 'teacher':
+               return redirect(url_for('web.teacherD'))
+            else:
+               pass
+        # default if no session
         return render_template('login.html')
+
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
@@ -38,14 +48,19 @@ def login():
             response = requests.get(f'http://localhost:5000/api/v1/users/get_user_by_email/{email}')
         except Exception as e:
             return render_template('login', err="User doesn't exist")
+        
         user_data = response.json()
+        
         if response.status_code == 200:
             user = user_data
             pwd = md5(password.encode()).hexdigest()
             userPC = user.get('pCode')
             userRole = user.get('role')
+
             if user and (userPC == pwd):
                 session['email'] = email
+                session['role'] = userRole
+
                 if session['email']:
                     print("session stored")
                 if userRole == 'student':

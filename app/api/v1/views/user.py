@@ -47,7 +47,7 @@ def get_user_by_email(user_email):
         return jsonify({"something":e})
 
 
-@app_views.route('/user/del/user_id', methods=['DELETE'], strict_slashes=False)
+@app_views.route('/user/del/<user_id>', methods=['DELETE'], strict_slashes=False)
 @swag_from('documentation/user/del_user.yml', methods=['DELETE'])
 def del_user(user_id):
     """delete individual user based of off id"""

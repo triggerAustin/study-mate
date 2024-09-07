@@ -4,11 +4,12 @@ from app.api.v1.views import app_views
 import binascii
 from app.api.v1.web import web
 from dotenv import load_dotenv
+from datetime import timedelta
 from app.models import storage
 import os
 from os import environ
 from os import getenv
-from flask import Flask, render_template, make_response, jsonify, request
+from flask import Flask, render_template, make_response, jsonify, request, session
 from flask_cors import CORS
 from flasgger import Swagger
 from flasgger.utils import swag_from
@@ -37,6 +38,10 @@ def close_db(error):
 def log_request_path():
     print(f"Accessing route: {request.path}")
 
+@app.before_request
+def make_session_permanent():
+    session.permanent = True  # Make the session permanent
+    app.permanent_session_lifetime = timedelta(days=7)  # Session las
 
 @app.errorhandler(404)
 def not_found(error):
@@ -51,7 +56,7 @@ def not_found(error):
     return make_response(jsonify({'error': "Not found"}), 404)
 
 app.config['SWAGGER'] = {
-    'title': 'AirBnB clone Restful API',
+    'title': 'study mate Restful API',
     'uiversion': 3
 }
 
