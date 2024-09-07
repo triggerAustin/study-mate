@@ -32,16 +32,19 @@ def get_user(user_id):
 @swag_from('documentation/user/get_users_by_email.yml', methods=['GET'])
 def get_user_by_email(user_email):
     """get user by email"""
-    user = storage.get_user_by_email(user_email)
-    if user:
-        return jsonify({
-            'id': user.id,
-            'email': user.email,
-            'role': user.role,
-            'pCode': user.password
-        })
-    else:
-        return jsonify({ 'email': email}), 404
+    try:
+        user = storage.get_user_by_email(user_email)
+        if user:
+            return jsonify({
+                'id': user.id,
+                'email': user.email,
+                'role': user.role,
+                'pCode': user.password
+            })
+        else:
+            return jsonify({ 'email': user_email}), 404
+    except Exception as e:
+        return jsonify({"something":e})
 
 
 @app_views.route('/user/del/user_id', methods=['DELETE'], strict_slashes=False)
@@ -73,7 +76,7 @@ def post_user():
     data = request.get_json()
     instance = User(**data)
     instance.save()
-    return make_response(jsonify(instance.to_dict()), 201)
+    return make_response(jsonify({"Created" : "success"}), 201)
 
 @app_views.route('/users/<int:user_id>', methods=['PUT'], strict_slashes=False)
 @swag_from('documentation/user/put_user.yml', methods=['PUT'])

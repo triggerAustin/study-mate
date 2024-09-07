@@ -10,6 +10,9 @@
 <body>
 <div class="container">
     <h1>Welcome to StudyMate</h1>
+    {% if err %}
+    <span id="error" style="color:red; margin-bottom:2px">{{err}}</span>
+    {% endif %}
     <form id="registrationForm" method="post">
         <input name="first_name" type="text" id="firstName" placeholder="First Name" required>
 	<input name="last_name" type="text" id="lastName" placeholder="Last name" >
@@ -25,6 +28,15 @@
             <button type="submit" id="registerButton">Register</button>
             <button type="button" id="cancelButton">Cancel</button>
         </div>
+	<div id='pwdCheck' style='display: none'>
+		<p>Password must:</p>
+		<ul class='pwdChecker'>
+			<li id='len'>be 8 to 16 characters long</li>
+			<li id='num'>contain a number</li>
+			<li id='case'>contain uppercase letter</li>
+			<li id='specialChar'>contain special characters</li>
+		</ul>
+	</div>
     </form>
 </div>
 <script src="../static/scripts/register.js"></script>

@@ -10,6 +10,9 @@
 <body>
 <div class="container">
     <h1>Login to StudyMate</h1>
+    {% if err %}
+    <span id="error" style="color: red; margin-bottom:2px">{{err}}</span>
+    {% endif %}
     <form id="loginForm" method="post">
         <input name="email" type="email" id="email" placeholder="Email" required>
         <input name="password" type="password" id="password" placeholder="Password" required>
