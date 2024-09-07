@@ -15,6 +15,7 @@ web = Blueprint('web', __name__, url_prefix='/studyMate')
 #spec.loader.exec_module(hbnb_module_0)
 from app.api.v1.web.index import index
 from app.api.v1.web.login import login
+from app.api.v1.web.logout import logout
 from app.api.v1.web.register import register
 from app.api.v1.web.student_dashboard import studentD
 from app.api.v1.web.teacher_dashboard import teacherD

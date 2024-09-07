@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 """ Starts a Flash Web Application """
-from app.models import storage
 from app.api.v1.web import web
 from os import environ
-from flask import Flask, render_template, redirect, url_for, session
-import uuid
+from flask import Flask, redirect, session, url_for
+
 app = Flask(__name__)
 # app.jinja_env.trim_blocks = True
 # app.jinja_env.lstrip_blocks = True
@@ -16,12 +15,11 @@ def close_db(error):
     storage.close()
 
 
-@web.route('/teacher', strict_slashes=False)
-def teacherD():
-    """render the teacher dashboard"""
-    if session.get('role') != 'teacher':
-        return redirect(url_for('web.login'))
-    return render_template('teacher-dashboard.html')
+@web.route('/logout', methods=['GET'], strict_slashes=False)
+def logout():
+    """logout user"""
+    session.clear()  # This will remove all session data
+    return redirect(url_for('web.login'))
 
 
 if __name__ == "__main__":

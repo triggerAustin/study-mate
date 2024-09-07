@@ -3,7 +3,7 @@
 from app.models import storage
 from app.api.v1.web import web
 from os import environ
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for, session
 import uuid
 app = Flask(__name__)
 # app.jinja_env.trim_blocks = True
@@ -19,6 +19,8 @@ def close_db(error):
 @web.route('/student', strict_slashes=False)
 def studentD():
     """render the register form"""
+    if session.get('role') != 'student':
+        return redirect(url_for('web.login'))
     return render_template('student-dashboard.html')
 
 
