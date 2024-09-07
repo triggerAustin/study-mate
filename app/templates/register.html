@@ -13,9 +13,9 @@
     {% if err %}
     <span id="error" style="color:red; margin-bottom:2px">{{err}}</span>
     {% endif %}
-    <form id="registrationForm" method="post">
+    <form id="registration" method="post">
         <input name="first_name" type="text" id="firstName" placeholder="First Name" required>
-	<input name="last_name" type="text" id="lastName" placeholder="Last name" >
+	    <input name="last_name" type="text" id="lastName" placeholder="Last name" >
         <select name="role" id="role" required>
             <option value="" disabled selected>Are you a teacher or a student?</option>
             <option value="teacher">Teacher</option>
@@ -24,11 +24,12 @@
         <input name="email" type="email" id="email" placeholder="Email" required>
         <input name="password" type="password" id="password" placeholder="Create password" required>
         <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
-	<p>Already have an account? <a href="{{ url_for('web.login')  }}">login</a></p>
+	<p>Already have an account? <a href="login.html">login</a></p>
         <div class="button-group">
             <button type="submit" id="registerButton">Register</button>
             <button type="button" id="cancelButton">Cancel</button>
         </div>
+
 	<div id='pwdCheck' style='display: none'>
 		<p>Password must:</p>
 		<ul class='pwdChecker'>

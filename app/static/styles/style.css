@@ -126,12 +126,12 @@ button:last-child {
     color: #000;
 }
 
-#cancelButton, #viewResults, #viewSubmissions {
+#cancelButton {
     background-color: #f05050;
     color: #fff;
 }
 
-#uploadMaterials, #createQuiz, #takeQuiz, #viewMaterials {
+#uploadMaterials, #uploadhomeworks, #viewhomeworks, #viewMaterials , #uploadworks, #viewSubmissions{
     background-color: #8ecae6;
     color: #000;
 }
@@ -149,7 +149,8 @@ button:last-child {
 #pwdChecker{
 	transition: ease-in-out 500ms;
 }
-.pwdChecker{
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
+.pwdChecker {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
