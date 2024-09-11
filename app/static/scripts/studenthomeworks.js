@@ -1,10 +1,11 @@
-document.getElementById('uploadButton').addEventListener('click', function() {
-    const fileInput = document.getElementById('homeworkFile');
+// handel the student uploads the homeworks
+document.getElementById('studentuploadhomeworks').addEventListener('click', function() {
+    const fileInput = document.getElementById('studenthomework');
     const file = fileInput.files[0];
 
     if (!file) {
         alert("select a file first.");
-        
+
         return;
     }
 
@@ -24,4 +25,3 @@ document.getElementById('uploadButton').addEventListener('click', function() {
             }
         })
 });
-
