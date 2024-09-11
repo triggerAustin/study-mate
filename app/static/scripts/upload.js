@@ -4,6 +4,7 @@ document.getElementById('uploadButton').addEventListener('click', function() {
 
     if (!file) {
         alert("select a file first.");
+        
         return;
     }
 
@@ -23,3 +24,4 @@ document.getElementById('uploadButton').addEventListener('click', function() {
             }
         })
 });
+
