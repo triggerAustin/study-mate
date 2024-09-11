@@ -14,10 +14,11 @@
         <button onclick="location.href='student-study-materials.html'" id="viewMaterials">View Study Materials</button>
         <button onclick="location.href='student-homeworks.html'" id="viewhomeworks">View Homeworks</button>
         <button onclick="location.href='student-upload-homeworks.html'" id="uploadworks">Upload Homeworks</button>
-        <button onclick="location.href='login.html'" id="logoutbutton">Logout</button>
-        <a href="{{ url_for('web.logout') }}">logout</a>
+        <button type="button" id="logoutbutton">Logout</button>
+        <!-- <a href="{{ url_for('web.logout') }}">logout</a> -->
     </div>
 </div>
 <script src="../static/scripts/student-dashboard.js"></script>
+<script src="../static/scripts/logout.js"></script>
 </body>
 </html>
