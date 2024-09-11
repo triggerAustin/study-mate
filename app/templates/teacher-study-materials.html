@@ -10,12 +10,12 @@
 <div class="page-content">
     <h2>Upload Study materials</h2>
     <form id="uploadForm" enctype="multipart/form-data">
-        <input type="file" id="fileInput" name="homework" />
-        <button type="submit">Upload</button>
+        <input type="file" id="studymaterials" name="file" accept=".pdf,.docx">
+        <button type="button" id="uploadstudymaterials">Upload</button>
     </form>
     <button onclick="location.href='teacher-dashboard.html'">Go Back to Dashboard</button>
 </div>
 
-
+<script src="../static/scripts/studymaterialsupload.js"></script>
 </body>
 </html>
