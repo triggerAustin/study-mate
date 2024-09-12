@@ -53,7 +53,7 @@ def not_found(error):
     """
     print("Routes available:", app.url_map)
 
-    return make_response(jsonify({'error': "Not found"}), 404)
+    return render_template('error.html')
 
 app.config['SWAGGER'] = {
     'title': 'study mate Restful API',

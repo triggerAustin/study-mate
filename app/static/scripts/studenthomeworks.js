@@ -1,8 +1,9 @@
 // handel the student uploads the homeworks
-document.getElementById('studentuploadhomeworks').addEventListener('click', function() {
+document.getElementById('uploadhw').addEventListener('click', function() {
     const fileInput = document.getElementById('studenthomework');
     const file = fileInput.files[0];
 
+	console.log('daf')
     if (!file) {
         alert("select a file first.");
 
@@ -10,9 +11,10 @@ document.getElementById('studentuploadhomeworks').addEventListener('click', func
     }
 
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('files', file);
+	console.log(formData.get('files'))
 
-    fetch('/upload_homework', {
+    fetch('upload_homeworks', {
         method: 'POST',
         body: formData
     })
