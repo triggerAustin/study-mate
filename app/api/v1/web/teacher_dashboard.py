@@ -16,7 +16,7 @@ def close_db(error):
     storage.close()
 
 
-@web.route('/teacher', strict_slashes=False)
+@web.route('/teacher/dashboard', strict_slashes=False)
 def teacherD():
     """render the teacher dashboard"""
     if session.get('role') != 'teacher':

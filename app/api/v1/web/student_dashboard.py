@@ -16,7 +16,7 @@ def close_db(error):
     storage.close()
 
 
-@web.route('/student', strict_slashes=False)
+@web.route('/student/dashboard', strict_slashes=False)
 def studentD():
     """render the register form"""
     if session.get('role') != 'student':

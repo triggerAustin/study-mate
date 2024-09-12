@@ -2,7 +2,7 @@
 document.getElementById("logoutButton").addEventListener("click", logout)
     function logout(){
         // check everything please when you test.
-        fetch("/api/v1/web/logout",{
+        fetch("logout",{
             method : 'GET',
             credentials : 'same-origin',
         })

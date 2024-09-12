@@ -45,7 +45,7 @@ def del_study_material(material_id):
 @app_views.route('/study_material/', methods=['POST'], strict_slashes=False)
 @swag_from('documentation/study_material/post_study_material.yml', methods=['POST'])
 def post_study_material():
-    """method to create mstudy_material"""
+    """method to create study_material"""
     if not request.get_json():
         abort(400, description="Not a JSON")
 

@@ -4,4 +4,7 @@ wrote requirements.txt file for the project.
 updated README.md to include installation guide.
 created data models for user, institution, quizzes, study_material, subjects.
 created API routes for user.
+finalized login and logout logic.
+addded login guard for relevant pages.
+created API routes for student dashboard, upload homework, view_materials, view homework.
 
