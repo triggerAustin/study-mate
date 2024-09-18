@@ -17,9 +17,10 @@ app.config['MAIL_PASSWORD'] = MAIL_PASSWORD
 app.config['MAIL_USE_TLS'] = MAIL_USE_TLS
 app.config['MAIL_USE_SSL'] = MAIL_USE_SSL
 
-
+# Initialize Flask-Mail with the app's configuration
 mail = Mail(app)
 
+# Define a route to send an email using Flask-Mail
 @web.route('/send_email/<email>', methods=['POST'], strict_slashes=False)
 def send_email(email):
     subject = 'Hello from Flask'

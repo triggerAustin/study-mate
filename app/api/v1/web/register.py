@@ -13,7 +13,7 @@ app = Flask(__name__)
 # app.jinja_env.trim_blocks = True
 # app.jinja_env.lstrip_blocks = True
 
-
+# Close the SQLAlchemy session at the end of the request lifecycle
 @app.teardown_appcontext
 def close_db(error):
     """ Remove the current SQLAlchemy Session """
@@ -28,8 +28,10 @@ def register():
     # user login data validation
     if request.method == 'POST':
         # call api to save to db
+        # Check if a user already exists
         user_exists = requests.get(f'http://localhost:5000/api/v1/users/get_user_by_email/{email}')
         if user_exists:
+            # If user already exists, show an error message on the registration page
             return render_template('register.html', err="user exists with that email")
 
         response = requests.post(f'http://localhost:5000/api/v1/users/post_user/', json=formData)
@@ -38,7 +40,7 @@ def register():
         else:
             print(f"Error {response.status_code}: {response.text}")
 
-    return render_template('register.html')
+    return render_template('register.html') #render the registration form
 
 
 if __name__ == "__main__":

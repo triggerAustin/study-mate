@@ -10,12 +10,13 @@ app = Flask(__name__)
 # app.jinja_env.lstrip_blocks = True
 
 
+# Close the SQLAlchemy session at the end of the request lifecyc
 @app.teardown_appcontext
 def close_db(error):
     """ Remove the current SQLAlchemy Session """
     storage.close()
 
-
+# Route definition for the teacher dashboard
 @web.route('/teacher/dashboard', strict_slashes=False)
 def teacherD():
     """render the teacher dashboard"""

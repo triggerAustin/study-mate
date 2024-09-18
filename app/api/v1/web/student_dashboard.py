@@ -9,13 +9,13 @@ app = Flask(__name__)
 # app.jinja_env.trim_blocks = True
 # app.jinja_env.lstrip_blocks = True
 
-
+# Close the SQLAlchemy session at the end of the request lifecycle
 @app.teardown_appcontext
 def close_db(error):
     """ Remove the current SQLAlchemy Session """
     storage.close()
 
-
+# Defining a route for student dashboard
 @web.route('/student/dashboard', strict_slashes=False)
 def studentD():
     """render the register form"""
