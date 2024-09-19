@@ -2,7 +2,7 @@
 """ Flask Application """
 from app.api.v1.views import app_views
 import binascii
-from app.api.v1.web import web
+from .api.v1.web import web
 from dotenv import load_dotenv
 from datetime import timedelta
 from app.models import storage
@@ -42,6 +42,10 @@ def log_request_path():
 def make_session_permanent():
     session.permanent = True  # Make the session permanent
     app.permanent_session_lifetime = timedelta(days=7)  # Session las
+
+@app.route('/'):
+def login:
+    return render_template('error.html')
 
 @app.errorhandler(404)
 def not_found(error):

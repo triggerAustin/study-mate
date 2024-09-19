@@ -7,6 +7,7 @@ from app import models
 from app.models.user import User
 from app.models.base_model import Base
 from os import getenv
+import pymysql
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker

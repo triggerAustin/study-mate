@@ -1,0 +1,14 @@
+.vercel
+#ignore the progress file
+.progress.txt
+# ignore the postmoterm file
+postmoterm.txt
+# ignore the venv directory
+api/v1/venv
+# ignore all swap files
+*.swp
+# Ignore Python cache files
+__pycache__/
+*.pyc
+.progress_log
+venv
