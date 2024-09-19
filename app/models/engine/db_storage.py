@@ -11,6 +11,8 @@ import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
+pymysql.install_as_MySQLdb()
+
 classes = {"User": User}
 
 
@@ -26,7 +28,7 @@ class DBStorage:
         STUDY_MATE_MYSQL_HOST = getenv('STUDY_MATE_MYSQL_HOST')
         STUDY_MATE_MYSQL_DB = getenv('STUDY_MATE_MYSQL_DB')
         STUDY_MATE_ENV = getenv('STUDY_MATE_ENV')
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
+        self.__engine = create_engine('mysql+pymysql://{}:{}@{}/{}'.
                                       format(STUDY_MATE_MYSQL_USER,
                                              STUDY_MATE_MYSQL_PWD,
                                              STUDY_MATE_MYSQL_HOST,
