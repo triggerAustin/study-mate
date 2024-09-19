@@ -1,6 +1,8 @@
 # study-mate
 for the portfolio project for alx foundations
-
+# Authors:
+ABDELKADER BELKACEMI
+AUSTIN Ng'ang'a
 ## installation
 this setup procedure is for a linux machine primarily
 the first thing is to clone the github repository:

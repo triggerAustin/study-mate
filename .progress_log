@@ -1,7 +1,0 @@
-set up the directory structure for the project.
-wrote script for mysql server set up.
-wrote requirements.txt file for the project.
-updated README.md to include installation guide.
-created data models for user, institution, quizzes, study_material, subjects.
-created API routes for user.
-

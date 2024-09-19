@@ -15,12 +15,14 @@ app = Flask(__name__)
 # app.jinja_env.lstrip_blocks = True
 
 
+# Close the SQLAlchemy session at the end of the request lifecycle
 @app.teardown_appcontext
 def close_db(error):
     """ Remove the current SQLAlchemy Session """
     storage.close()
 
 
+# the login route
 @web.route('/login', methods=['GET', 'POST'], strict_slashes=False)
 def login():
     """render the login form"""
@@ -47,7 +49,7 @@ def login():
         try:
             response = requests.get(f'http://localhost:5000/api/v1/users/get_user_by_email/{email}')
         except Exception as e:
-            return render_template('login', err="User doesn't exist")
+            return render_template('login', err="email or password is incorrect")
         
         user_data = response.json()
         
@@ -68,10 +70,10 @@ def login():
                 elif userRole == 'teacher':
                     return redirect(url_for('web.teacherD'))
             else:
-                error = "Invalid password"
+                error = "email or password is incorrect"
                 return render_template('login.html', err=error)
 
-        return render_template('login.html', err="user with that email doesn't exists")
+        return render_template('login.html', err="email or password is incorrect")
 
 
 

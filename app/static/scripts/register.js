@@ -10,6 +10,7 @@ const caseCheck = document.getElementById('case');
 const specCharCheck = document.getElementById('specialChar')
 // manage the cancel button to reset the login form.
 cancelBtn.addEventListener('click', function(){
+//document.getElementById("cancel-button").addEventListener('click', function(){
     document.getElementById("registration").reset();
 });
 
