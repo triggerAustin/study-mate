@@ -30,7 +30,7 @@ document.getElementById('uploadhw').addEventListener('click', function() {
 
 function downloadHw(materialId){
         console.log('clocl')
-        const url = `http://localhost:5000/studyMate/student/dashboard/download_hw/${materialId}`;
+        const url = `http://localhost:5000/studyMate/student/dashboard/download_hw?id=${materialId}`;
         fetch(url)
         .then(response => {
             if (!response.ok) {

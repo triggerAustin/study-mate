@@ -30,7 +30,7 @@ def download_homeworks():
     res = requests.get(url)
     if res.status_code == 200:
         file_path = res.json().get('file_path')
-        file_name = res.json().get('file_name')
+        file_name = res.json().get('title')
     else:
         print(f"Error: {res.status_code} - {res.json()}")
     """ for student to download hw uploaded by trs"""
