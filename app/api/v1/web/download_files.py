@@ -34,8 +34,8 @@ def download_homeworks():
     else:
         print(f"Error: {res.status_code} - {res.json()}")
     """ for student to download hw uploaded by trs"""
-#    return send_from_directory(os.path.dirname(file_path), file_name)
-    return send_from_directory(directory=os.path.dirname(file_path), path=file_name, as_attatchment=True)
+    return send_from_directory(os.path.dirname(file_path), file_name)
+   # return send_from_directory(directory=os.path.dirname(file_path), path=file_name, as_attatchment=True)
 
 if __name__ == "__main__":
     """ Main Function """
