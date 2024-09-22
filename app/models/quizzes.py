@@ -6,7 +6,7 @@ from app import models
 from app.models.base_model import BaseModel, Base
 from os import getenv
 import sqlalchemy
-from sqlalchemy import Column, String, LageBinary
+from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 from hashlib import md5
 
@@ -18,15 +18,15 @@ class Quizz(BaseModel, Base):
     if models.storage_t == 'db':
         __tablename__ = 'quizz'
         title = Column(String(128), nullable=False)
-        description = Column(String(500)
-        quiz_file = Column(LargeBinary, nullable=False)
+        description = Column(String(500))
+        file_path = Column(String(500), nullable=False)
     else:
         title = ""
         description = ""
-        quiz_file = ""
+        file_path = ""
 
     def __init__(self):
         """
         constructor method for this class
         """
-       super().__init__(self, *args, **kwargs)
+        super().__init__(self, **kwargs)

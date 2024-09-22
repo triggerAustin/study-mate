@@ -1,8 +1,9 @@
-// handel the teacher upload study materials
+// handel the student uploads the homeworks
 document.getElementById('uploadstudymaterials').addEventListener('click', function() {
     const fileInput = document.getElementById('studymaterials');
     const file = fileInput.files[0];
 
+        console.log('daf')
     if (!file) {
         alert("select a file first.");
 
@@ -10,9 +11,10 @@ document.getElementById('uploadstudymaterials').addEventListener('click', functi
     }
 
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('files', file);
+        console.log(formData.get('files'))
 
-    fetch('/upload_homework', {
+    fetch('upload_studyMaterial', {
         method: 'POST',
         body: formData
     })
@@ -22,10 +24,6 @@ document.getElementById('uploadstudymaterials').addEventListener('click', functi
                 alert('File uploaded!');
             } else {
                 alert('upload failed.');
-            }
+            } 
         })
 });
-
-
-
-

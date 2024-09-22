@@ -5,6 +5,7 @@ Contains the class DBStorage
 
 from app import models
 from app.models.user import User
+from app.models.quizzes import Quizz
 from app.models.study_material import StudyMaterial
 from app.models.base_model import Base
 from os import getenv
@@ -14,7 +15,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 
 #pymysql.install_as_MySQLdb()
 
-classes = {"User": User, "StudyMaterial": StudyMaterial}
+classes = {"User": User, "StudyMaterial": StudyMaterial, "Quizz": Quizz}
 
 
 class DBStorage:

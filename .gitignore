@@ -3,3 +3,4 @@ venv
 .*.swp
 vercel.json
 __pycache__
+uploads

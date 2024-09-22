@@ -4,13 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Study Materials</title>
-    <link rel="stylesheet" href="../static/styles/dashboard.css">
+    <link rel="stylesheet" href="/static/styles/dashboard.css">
 </head>
 <body>
 <div class="page-content">
     <h2>Submissions</h2>
-    <p>Here you will find all the study materials.</p>
-    <button onclick="location.href='teacher-dashboard.html'">Go Back to Dashboard</button>
+    {% if materials %}
+        {% for material in materials %}
+                <li>
+                <h2>{{ material.title }}</h2>
+                <p>{{ material.description }}</p>
+                <button onClick="downloadHw('{{ material.id }}')">Download File</button>
+            </li>
+        {% endfor %}
+    {% else %}
+        <p>Here you will find all your assigned homeworks.</p>
+    {% endif %}
+    <button onclick="location.href='/studyMate/teacher/dashboard'">Go Back to Dashboard</button>
 </div>
 </body>
 </html>

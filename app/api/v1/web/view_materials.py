@@ -29,11 +29,18 @@ def view_material():
     if session:
         if session.get('role') == 'student':
             # get all the files
+            url = 'http://localhost:5000/api/v1/get_quizzes'
+            res = requests.get(url)
+
+            print(res.text)
+            if res.status_code == 200:
+                files = res.json()
+            else:
+                print(f"Failed to retrieve studyMaterials: {res.status_code} - {res.text}")
             page = 'student-study-materials.html'
-        else:
-           return redirect(url_for('web.login'))
-    # default if no session
-        return render_template(page)
+
+    return render_template(page, materials=files)
+
 
 # view homework routes
 @web.route('/student/dashboard/homework', methods=['GET'], strict_slashes=False)
