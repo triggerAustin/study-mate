@@ -4,7 +4,7 @@ from app.models import storage, user
 from app.api.v1.web import web
 import os
 from os import environ
-from flask import make_response, Flask, send_from_directory
+from flask import jsonify, request, make_response, Flask, send_from_directory
 from hashlib import md5
 import requests
 import uuid
@@ -25,19 +25,17 @@ def close_db(error):
 # view study material route
 @web.route('/student/dashboard/download_hw', methods=['GET'], strict_slashes=False)
 def download_homeworks():
-    data  = requests.get_json()
-    file_id = data.get('id')
-    url  = 'http://localhost:5000/api/v1/get_study_material/{file_id}'
+    file_id = request.args.get('id')
+    url  = f'http://localhost:5000/api/v1/get_study_material/{file_id}'
     res = requests.get(url)
-    print(res)
     if res.status_code == 200:
-        file_path = res.get('file_path')
+        file_path = res.json().get('file_path')
+        file_name = res.json().get('file_name')
     else:
         print(f"Error: {res.status_code} - {res.json()}")
     """ for student to download hw uploaded by trs"""
-    print(file_path)
-    return send_from_directory(file_path, file_name)
-
+#    return send_from_directory(os.path.dirname(file_path), file_name)
+    return send_from_directory(directory=os.path.dirname(file_path), path=file_name, as_attatchment=True)
 
 if __name__ == "__main__":
     """ Main Function """

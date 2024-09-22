@@ -42,7 +42,7 @@ def view_homework():
     if session:
         if session.get('role') == 'student':
             # get student homework
-            url = 'http://localhost:5000/api/v1/get_study_material'
+            url = 'http://localhost:5000/api/v1/get_study_materials'
             res = requests.get(url)
             
             if res.status_code == 200:

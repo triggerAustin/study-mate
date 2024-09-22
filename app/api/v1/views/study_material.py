@@ -8,7 +8,7 @@ from app.api.v1.views import app_views
 from flask import abort, jsonify, make_response, request
 from flasgger.utils import swag_from
 
-@app_views.route('/get_study_material', methods=['GET'], strict_slashes=False)
+@app_views.route('/get_study_materials', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/study_material/get_study_material.yml', methods=['GET'])
 def get_study_materials():
     """method to get all study_material data from db"""
@@ -23,11 +23,12 @@ def get_study_materials():
         })
     return jsonify(list_study_material)
 
-@app_views.route('/study_material/int:<material_id>', methods=['GET'], strict_slashes=False)
+@app_views.route('/get_study_material/<material_id>', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/quizz/get_material.yml', methods=['GET'])
 def get_study_material(material_id):
     """method to get material based off of id"""
-    material = storage.get(StudyMaterial, material_id)
+    material = storage.get("StudyMaterial", material_id)
+#    material = db.session.query(StudyMaterial).filter_by(id=material_id).first()
     if not material:
         abort(404)
 
