@@ -30,14 +30,16 @@ def get_quizzes():
 def get_quizz(quizz_id):
     """method to get quizz based off of id"""
     quizz = storage.get("Quizz", quizz_id)
+    print("sewtytruryu", quizz)
     if not quizz:
         abort(404)
-        res_data = {
-            "id": quizz.id,
-            "title": quizz.title,
-            "description": quizz.description,
-            "file_path": quizz.file_path
-        }
+    res_data = {
+        "id": quizz.id,
+        "title": quizz.title,
+        "description": quizz.description,
+        "file_path": quizz.file_path
+    }
+    print(res_data)
 
     return jsonify(res_data)
 

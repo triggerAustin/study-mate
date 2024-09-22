@@ -98,6 +98,7 @@ class DBStorage:
             return None
 
         all_cls = models.storage.all(classes[cls])
+        print(all_cls)
         for value in all_cls.values():
             if (value.id == id):
                 return value

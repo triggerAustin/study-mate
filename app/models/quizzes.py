@@ -25,7 +25,7 @@ class Quizz(BaseModel, Base):
         description = ""
         file_path = ""
 
-    def __init__(self):
+    def __init__(self, **kwargs):
         """
         constructor method for this class
         """

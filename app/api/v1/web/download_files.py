@@ -49,7 +49,7 @@ def download_studyMaterial():
         file_path = res.json().get('file_path')
         file_name = res.json().get('title')
     else:
-        print(f"Error: {res.status_code} - {res.json()}")
+        print(f"Error: {res.status_code} - {res.txt}")
     """ for student to download hw uploaded by trs"""
     return send_from_directory(os.path.dirname(file_path), file_name)
    # return send_from_directory(directory=os.path.dirname(file_path), path=file_name, as_attatchment=True)

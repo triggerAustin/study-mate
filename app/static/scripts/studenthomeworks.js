@@ -55,7 +55,7 @@ function downloadHw(materialId){
 }
 
 // student downloads studymaterials
-function downloadHw(materialId){
+function downloadSm(materialId){
         console.log('clocl')
         const url = `http://localhost:5000/studyMate/student/dashboard/download_studyMaterial?id=${materialId}`;
         fetch(url)
