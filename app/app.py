@@ -9,7 +9,7 @@ from app.models import storage
 import os
 from os import environ
 from os import getenv
-from flask import Flask, render_template, make_response, jsonify, request, session
+from flask import Flask, render_template, url_for, redirect, make_response, jsonify, request, session
 from flask_cors import CORS
 from flasgger import Swagger
 from flasgger.utils import swag_from
@@ -37,6 +37,10 @@ def close_db(error):
 @app.before_request
 def log_request_path():
     print(f"Accessing route: {request.path}")
+
+@app.route('/', methods=['GET'], strict_slashes=False)
+def rootPage():
+    return redirect(url_for('web.login'))
 
 @app.before_request
 def make_session_permanent():

@@ -9,8 +9,19 @@
 <body>
 <div class="page-content">
     <h2>View Homeworks</h2>
-    <p>Here you will find all your assigned homeworks.</p>
-    <button onclick="location.href='/studyMaterial/student/dashboard'">Go Back to Dashboard</button>
+    {% if materials %}
+	{% for material in materials %}
+		<li>
+                <h2>{{ material.title }}</h2>
+                <p>{{ material.description }}</p>
+                <button onClick="downloadHw('{{ material.id }}')">Download File</button>
+            </li>
+	{% endfor %}
+    {% else %}
+    	<p>Here you will find all your assigned homeworks.</p>
+    {% endif %}
+    <button onclick="location.href='/studyMate/student/dashboard'">Go Back to Dashboard</button>
 </div>
+<script src="/static/scripts/studenthomeworks.js"></script>
 </body>
 </html>

@@ -36,6 +36,7 @@ def register():
 
         response = requests.post(f'http://localhost:5000/api/v1/users/post_user/', json=formData)
         if response.status_code == 201:
+            print("done")
             return redirect(url_for('web.login'))
         else:
             print(f"Error {response.status_code}: {response.text}")

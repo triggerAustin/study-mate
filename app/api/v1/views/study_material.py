@@ -8,14 +8,19 @@ from app.api.v1.views import app_views
 from flask import abort, jsonify, make_response, request
 from flasgger.utils import swag_from
 
-@app_views.route('/study_material', methods=['GET'], strict_slashes=False)
+@app_views.route('/get_study_material', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/study_material/get_study_material.yml', methods=['GET'])
-def get_study_material():
+def get_study_materials():
     """method to get all study_material data from db"""
     all_study_material = storage.all(StudyMaterial).values()
     list_study_material = []
     for material in all_study_material:
-        list_study_material.append(material.to_dict())
+        list_study_material.append({
+            'file_path': material.file_path,
+            'description': material.description,
+            'title': material.title,
+            'id': material.id
+        })
     return jsonify(list_study_material)
 
 @app_views.route('/study_material/int:<material_id>', methods=['GET'], strict_slashes=False)
@@ -26,7 +31,13 @@ def get_study_material(material_id):
     if not material:
         abort(404)
 
-    return jsonify(material.to_dict())
+    res_data = {
+        "id": material.id,
+        "title": material.title,
+        "description": material.description,
+        "file_path": material.file_path
+    }
+    return jsonify(res_data)
 
 @app_views.route('/study_material/int:<material_id>', methods=['DELETE'], strict_slashes=False)
 @swag_from('documentation/study_material/del_study_material.yml', methods=['DELETE'])
@@ -42,14 +53,19 @@ def del_study_material(material_id):
 
     return make_response(jsonify({}), 200)
 
-@app_views.route('/study_material/', methods=['POST'], strict_slashes=False)
+@app_views.route('/post_study_material/', methods=['POST'], strict_slashes=False)
 @swag_from('documentation/study_material/post_study_material.yml', methods=['POST'])
 def post_study_material():
     """method to create study_material"""
+    print(request.get_json())
+    print("here")
     if not request.get_json():
+        print("here also")
         abort(400, description="Not a JSON")
 
+    print(request)
     data = request.get_json()
+    print(data)
     instance = StudyMaterial(**data)
     instance.save()
     return make_response(jsonify(instance.to_dict()), 201)

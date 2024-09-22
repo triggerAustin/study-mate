@@ -28,6 +28,7 @@ def view_material():
     # redirect if session exist
     if session:
         if session.get('role') == 'student':
+            # get all the files
             page = 'student-study-materials.html'
         else:
            return redirect(url_for('web.login'))
@@ -40,8 +41,17 @@ def view_homework():
     # render homework page
     if session:
         if session.get('role') == 'student':
+            # get student homework
+            url = 'http://localhost:5000/api/v1/get_study_material'
+            res = requests.get(url)
+            
+            if res.status_code == 200:
+                files = res.json()
+                print(files, "sdfas")
+            else:
+                print(f"Failed to retrieve studyMaterials: {res.status_code} - {res.text}")
             page = 'student-homeworks.html'
-        return render_template(page)
+        return render_template(page, materials=files)
 
 
 if __name__ == "__main__":

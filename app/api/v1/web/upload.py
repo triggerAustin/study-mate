@@ -2,6 +2,7 @@
 """ Starts a Flash Web Application """
 from app.models import storage, user
 from app.api.v1.web import web
+import os
 from os import environ
 from flask import make_response, Flask, redirect, render_template, request, session, url_for, flash, jsonify
 from hashlib import md5
@@ -30,7 +31,7 @@ def upload_page():
         if session.get('role') == 'student':
             page = 'student-upload-homeworks.html'
         else:
-           return render_template('web.login')
+           return redirect(url_for('web.login'))
     # default if no session
         return render_template(page)
 
@@ -38,29 +39,39 @@ def upload_page():
 @web.route('/student/dashboard/upload_homeworks', methods=['POST'], strict_slashes=False)
 def upload_homework():
     formData = request.form.to_dict()
-    print(request.files['files'])
-    file = request.files['files']
+    file = request.files.get('files')
 
-    url = 'http://localhost:5000/study_material/'  # Change to your actual endpoint URL
+    if not file:
+        return make_response(jsonify({'error': 'No file provided'}), 400)
 
-    # Prepare the file and JSON data to be sent
-    file_to_upload = {'file': open(file, 'rb')}
+    # Save the file to the specified directory
+    email = session.get('email')
+    UPLOAD_FOLDER = os.path.join(os.getcwd(), 'uploads', email)
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+    file_name = file.filename
+    file_path = os.path.join(UPLOAD_FOLDER, file_name)
+    file.save(file_path)
+
+    # Prepare the data to be stored in the database
     json_data = {
-        'title': 'Sample Study Material',
-        'description': 'This is a sample description for the study material'
+        'title': file_name,
+        'description': formData.get('description', 'This is a sample description for the study material'),
+        'file_path': file_path
     }
 
-    # Send POST request with file and JSON data
-    response = requests.post(url, files=file_to_upload, data=json_data)
+    url = 'http://localhost:5000/api/v1/post_study_material/'  # Change to your actual endpoint URL
+    response = requests.post(url, data=json.dumps(json_data),  headers={'Content-Type': 'application/json'})
 
-    # Check response status and content
     if response.status_code == 201:
         print('File uploaded successfully:', response.json())
+        msg = "file uploaded successfully"
     else:
         print('Failed to upload file:', response.status_code, response.text)
+        msg = "failed to upload file"
 
-    return make_response(jsonify({'error' : 'pushed'}), 200)
-
+    # Response after successfully saving the file
+    return make_response(jsonify({'message': msg, 'data': json_data})), response.status_code
 
 if __name__ == "__main__":
     """ Main Function """

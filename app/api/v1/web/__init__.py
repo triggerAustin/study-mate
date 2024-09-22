@@ -13,6 +13,7 @@ web = Blueprint('web', __name__, url_prefix='/studyMate')
 
 #hbnb_module_0 = importlib.util.module_from_spec(spec)
 #spec.loader.exec_module(hbnb_module_0)
+from app.api.v1.web.download_files import *
 from app.api.v1.web.index import index
 from app.api.v1.web.login import login
 from app.api.v1.web.logout import logout

@@ -5,15 +5,16 @@ Contains the class DBStorage
 
 from app import models
 from app.models.user import User
+from app.models.study_material import StudyMaterial
 from app.models.base_model import Base
 from os import getenv
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-pymysql.install_as_MySQLdb()
+#pymysql.install_as_MySQLdb()
 
-classes = {"User": User}
+classes = {"User": User, "StudyMaterial": StudyMaterial}
 
 
 class DBStorage:
@@ -28,13 +29,16 @@ class DBStorage:
         STUDY_MATE_MYSQL_HOST = getenv('STUDY_MATE_MYSQL_HOST')
         STUDY_MATE_MYSQL_DB = getenv('STUDY_MATE_MYSQL_DB')
         STUDY_MATE_ENV = getenv('STUDY_MATE_ENV')
-        self.__engine = create_engine('mysql+pymysql://{}:{}@{}/{}'.
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
                                       format(STUDY_MATE_MYSQL_USER,
                                              STUDY_MATE_MYSQL_PWD,
                                              STUDY_MATE_MYSQL_HOST,
                                              STUDY_MATE_MYSQL_DB))
         if STUDY_MATE_ENV == "test":
             Base.metadata.drop_all(self.__engine)
+        else:
+            # create all db tables
+            Base.metadata.create_all(self.__engine)
 
         print(f"Initializing DBStorage with: user={STUDY_MATE_MYSQL_USER}, host={STUDY_MATE_MYSQL_HOST}, db={STUDY_MATE_MYSQL_DB}")
 

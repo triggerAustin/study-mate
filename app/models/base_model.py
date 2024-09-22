@@ -41,23 +41,23 @@ class BaseModel:
             **kwargs: json argument
         """
         if kwargs: # if json object is passed
-            for key, value in kwargs: # loop through kwargs and create the attr
+            for key, value in kwargs.items(): # loop through kwargs and create the attr
                 if key != "__class__":
                     setattr(self, key, value)
             # update the attr individually based on presence
             if kwargs.get("created_at", None) and type(self.created_at) is str:
                 self.created_at = datetime.strptime(kwargs["created_at"], time)
             else:
-                self.created_at = datetime.utcnow
+                self.created_at = datetime.utcnow()
             if kwargs.get("updated_at", None) and type(self.created_at) is str:
                 self.updated_at = datetime.strptime(kwargs["updated_at"], time)
             else:
-                self.updated_at = datetime.utcnow
+                self.updated_at = datetime.utcnow()
             if kwargs.get("id", None) is None:
                 self.id = str(uuid.uuid4())
         else: # update if nothing was passed
             self.id = str(uuid.uuid4())
-            self.created_at = datetime.utcnow
+            self.created_at = datetime.utcnow()
             self.updated_at = self.created_at # so both match by default
 
     def save(self):
@@ -65,7 +65,7 @@ class BaseModel:
         saves the class object to db 
         """
         # update updated_at attr
-        self.update_at = datetime.utcnow
+        self.update_at = datetime.utcnow()
         # call methods in storage to save
         models.storage.new(self)
         models.storage.save()
