@@ -89,7 +89,7 @@ def upload_homework_tr():
         msg = "failed to upload file"
 
     # Response after successfully saving the file
-    return make_response(jsonify({'message': msg, 'data': json_data})), response.status_code
+    return make_response(jsonify({'message': msg, 'status_code': response.status_code})), response.status_code
 
 
 

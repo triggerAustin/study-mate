@@ -71,7 +71,7 @@ def upload_homework():
         msg = "failed to upload file"
 
     # Response after successfully saving the file
-    return make_response(jsonify({'message': msg, 'data': json_data})), response.status_code
+    return make_response(jsonify({'message': msg, 'status_code' : response.status_code})), response.status_code
 
 #upload study material tr
 @web.route('/teacher/dashboard/upload_studyMaterial', methods=['POST'], strict_slashes=False)
@@ -109,7 +109,7 @@ def upload_study_material():
         msg = "failed to upload file"
 
     # Response after successfully saving the file
-    return make_response(jsonify({'message': msg, 'data': json_data})), response.status_code
+    return make_response(jsonify({'message': msg, 'status_code': response.status_code})), response.status_code
 
 
 

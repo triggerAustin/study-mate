@@ -62,7 +62,7 @@ def login():
             if user and (userPC == pwd):
                 session['email'] = email
                 session['role'] = userRole
-
+        
                 if session['email']:
                     print("session stored")
                 if userRole == 'student':

@@ -18,10 +18,10 @@ document.getElementById('teacheruploadhomeworks').addEventListener('click', func
     })
         .then(response => response.json())
         .then(data => {
-            if (data.success) {
-                alert('File uploaded!');
+            if (data.status_code == 201) {
+                alert(data.message);
             } else {
-                alert('upload failed.');
+                alert(data.message);
             }
         })
 });
